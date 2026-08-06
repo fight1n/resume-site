@@ -1,0 +1,57 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+const { project } = Astro.props;
+const { title, summary, date, tech, role, links } = project.data;
+const fmtDate = new Intl.DateTimeFormat('zh-CN', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}).format(date);
+---
+
+<BaseLayout title={title} description={summary}>
+  <div class="container">
+    <div class="detail-head">
+      <div class="kicker">项目</div>
+      <h1>{title}</h1>
+      <p class="summary">{summary}</p>
+      <div class="detail-meta">
+        <span>{role ?? '项目'}</span>
+        <span>完成于 {fmtDate}</span>
+      </div>
+      {
+        tech.length > 0 && (
+          <div class="tags" style="margin-top:12px">
+            {tech.map((t) => (
+              <span class="tag">{t}</span>
+            ))}
+          </div>
+        )
+      }
+      {
+        (links?.repo || links?.demo) && (
+          <div class="links">
+            {links?.demo && (
+              <a class="btn btn-primary" href={links.demo} target="_blank" rel="noopener">
+                在线预览
+              </a>
+            )}
+            {links?.repo && (
+              <a class="btn btn-ghost" href={links.repo} target="_blank" rel="noopener">
+                源码仓库
+              </a>
+            )}
+          </div>
+        )
+      }
+    </div>
+    <article class="prose">
+      <slot />
+    </article>
+  </div>
+</BaseLayout>

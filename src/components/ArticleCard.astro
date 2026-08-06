@@ -1,0 +1,27 @@
+---
+import FormattedDate from './FormattedDate.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  article: CollectionEntry<'articles'>;
+}
+const { article } = Astro.props;
+const { title, summary, date, tags } = article.data;
+---
+
+<article class="card">
+  {
+    tags.length > 0 && (
+      <div class="tags">
+        {tags.slice(0, 3).map((t) => (
+          <span class="tag">{t}</span>
+        ))}
+      </div>
+    )
+  }
+  <h3><a href={`/articles/${article.id}/`}>{title}</a></h3>
+  <p>{summary}</p>
+  <div class="card-foot">
+    <FormattedDate date={date} />
+  </div>
+</article>

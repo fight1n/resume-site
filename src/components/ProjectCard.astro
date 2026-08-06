@@ -1,0 +1,32 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+const { project } = Astro.props;
+const { title, summary, date, tech, role } = project.data;
+const fmtDate = new Intl.DateTimeFormat('zh-CN', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+}).format(date);
+---
+
+<article class="card">
+  <h3><a href={`/projects/${project.id}/`}>{title}</a></h3>
+  <p>{summary}</p>
+  {
+    tech.length > 0 && (
+      <div class="tags">
+        {tech.slice(0, 4).map((t) => (
+          <span class="tag">{t}</span>
+        ))}
+      </div>
+    )
+  }
+  <div class="card-foot">
+    <span>{role ?? '项目'}</span>
+    <time datetime={date.toISOString()}>{fmtDate}</time>
+  </div>
+</article>

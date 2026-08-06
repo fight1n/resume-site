@@ -1,0 +1,43 @@
+---
+import { profile } from '../data/profile';
+
+const path = Astro.url.pathname;
+const navItems = [
+  { href: '/', label: '首页' },
+  { href: '/articles/', label: '文章' },
+  { href: '/projects/', label: '项目' },
+  { href: '/about/', label: '关于' },
+];
+
+function isActive(href: string): boolean {
+  if (href === '/') return path === '/' || path === '';
+  return path.startsWith(href);
+}
+---
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/">{profile.name}<span>.</span></a>
+    <button class="nav-toggle" aria-label="打开菜单" aria-expanded="false">
+      <span></span>
+    </button>
+    <nav class="nav" id="primary-nav">
+      {
+        navItems.map((item) => (
+          <a href={item.href} class={isActive(item.href) ? 'active' : ''}>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>('.nav-toggle');
+  const nav = document.getElementById('primary-nav');
+  btn?.addEventListener('click', () => {
+    const open = nav?.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(Boolean(open)));
+  });
+</script>

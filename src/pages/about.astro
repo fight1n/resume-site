@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { profile } from '../data/profile';
+---
+
+<BaseLayout title={`关于 · ${profile.name}`} description={profile.summary}>
+  <div class="container section">
+    <div class="about-grid">
+      <div>
+        <h1>关于我</h1>
+        <p class="tagline" style="font-size:1.1rem;color:var(--muted)">{profile.title}</p>
+        <div class="prose" style="max-width:none">
+          <p>{profile.summary}</p>
+        </div>
+        <h2 style="margin-top:28px">技能</h2>
+        <div class="skills-list">
+          {profile.skills.map((s) => <span class="tag">{s}</span>)}
+        </div>
+      </div>
+      <aside>
+        <div class="card">
+          <h3>联系方式</h3>
+          <p style="margin:6px 0"><a href={`mailto:${profile.email}`}>{profile.email}</a></p>
+          <p style="margin:6px 0;color:var(--muted)">{profile.location}</p>
+          <div class="links">
+            {
+              profile.socials.map((s) => (
+                <a class="btn btn-ghost" href={s.url} target="_blank" rel="noopener">
+                  {s.label}
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</BaseLayout>
