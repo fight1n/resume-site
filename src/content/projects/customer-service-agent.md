@@ -1,7 +1,13 @@
 ---
 title: 智能客服 Agent
+summary: 基于 RAG + Function Call 的智能客服 Agent，承接高频重复咨询、复杂问题转人工，降低平均响应时长。
+date: 2026-08-09
+role: AI 应用开发
+tech: ["Python", "FastAPI", "RAG", "LLM (DeepSeek / GLM)", "Function Call", "熔断重试"]
+links:
+  repo: "https://github.com/fight1n/customer-service-agent"
+featured: true
 ---
-
 
 ## 背景
 
