@@ -1,7 +1,6 @@
 # 个人求职网站（文章 + 项目展示）
 
-基于 [Astro](https://astro.build) 的纯静态个人站，包含 **文章** 与 **项目** 两个核心板块，
-蓝/靛蓝专业风、桌面与移动端自适应，可一键部署到 GitHub Pages。
+基于 [Astro](https://astro.build) 的纯静态个人站，包含 **文章** 与 **项目** 两个核心板块。
 
 ## 目录结构
 
@@ -29,16 +28,16 @@ npm run build    # 构建到 dist/
 npm run preview  # 预览构建产物
 ```
 
-## 如何添加一篇文章（核心：自定义完稿时间）
+## 添加文章
 
-1. 在 `src/content/articles/` 新建一个 `.md` 文件，例如 `my-post.md`。
+1. 在 `src/content/articles/` 新建一个 `.md` 文件。
 2. 填写 frontmatter：
 
    ```md
    ---
    title: 文章标题
    summary: 一句话摘要，会显示在列表页
-   date: 2026-07-01        # ★ 完稿时间，可设为任意过去日期
+   date: 2026-07-01        
    tags: ["前端", "思考"]
    featured: false         # true 会优先出现在首页「精选项目/最新文章」
    draft: false            # true 则不发布
@@ -47,12 +46,9 @@ npm run preview  # 预览构建产物
    正文用标准 Markdown 书写……
    ```
 
-3. `date` 就是你希望显示/排序的「完稿时间」。即使你今天才上传，只要把 `date`
-   写成过去的某天（如实际完稿的 `2026-07-01`），列表与详情都会显示那一天——
-   这就是「思考印记」。页面**只显示完稿时间**，不暴露实际上传日。
-4. 保存后（dev 模式热更新）即可在 `/articles/` 看到。
+3. 保存后（dev 模式热更新）即可在 `/articles/` 看到。
 
-## 如何添加一个项目
+## 添加项目
 
 在 `src/content/projects/` 新建 `.md`，frontmatter 示例：
 
@@ -60,7 +56,7 @@ npm run preview  # 预览构建产物
 ---
 title: 项目名
 summary: 一句话介绍
-date: 2026-04-10        # 完成时间
+date: 2026-04-10      
 role: 前端负责人
 tech: ["React", "TypeScript"]
 links:
@@ -84,8 +80,6 @@ featured: true
 2. 把代码推送到 `main` 分支（`.github/workflows/deploy.yml` 会自动构建并部署）。
 3. 在仓库 **Settings → Pages → Build and deployment → Source** 选择 **GitHub Actions**。
 4. 等待 Actions 跑完，访问给出的 Pages 地址即可。
-
-> 注意：部署前请把 `src/data/profile.ts` 与示例文章/项目替换成你的真实内容。
 
 ## 技术栈
 
