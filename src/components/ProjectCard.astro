@@ -5,6 +5,7 @@ interface Props {
   project: CollectionEntry<'projects'>;
 }
 const { project } = Astro.props;
+const base = import.meta.env.BASE_URL;
 const { title, summary, date, tech, role } = project.data;
 const fmtDate = new Intl.DateTimeFormat('zh-CN', {
   year: 'numeric',
@@ -14,7 +15,7 @@ const fmtDate = new Intl.DateTimeFormat('zh-CN', {
 ---
 
 <article class="card">
-  <h3><a href={`/projects/${project.id}/`}>{title}</a></h3>
+  <h3><a href={`${base}projects/${project.id}/`}>{title}</a></h3>
   <p>{summary}</p>
   {
     tech.length > 0 && (

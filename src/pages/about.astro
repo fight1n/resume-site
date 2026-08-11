@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { profile } from '../data/profile';
+const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title={`关于 · ${profile.name}`} description={profile.summary}>
@@ -25,7 +26,7 @@ import { profile } from '../data/profile';
           <div class="links">
             {
               profile.socials.map((s) => (
-                <a class="btn btn-ghost" href={s.url} target="_blank" rel="noopener">
+                <a class="btn btn-ghost" href={s.url.startsWith('/') ? base + s.url.slice(1) : s.url} target="_blank" rel="noopener">
                   {s.label}
                 </a>
               ))

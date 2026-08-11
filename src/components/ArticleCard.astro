@@ -6,6 +6,7 @@ interface Props {
   article: CollectionEntry<'articles'>;
 }
 const { article } = Astro.props;
+const base = import.meta.env.BASE_URL;
 const { title, summary, date, tags } = article.data;
 ---
 
@@ -19,7 +20,7 @@ const { title, summary, date, tags } = article.data;
       </div>
     )
   }
-  <h3><a href={`/articles/${article.id}/`}>{title}</a></h3>
+  <h3><a href={`${base}articles/${article.id}/`}>{title}</a></h3>
   <p>{summary}</p>
   <div class="card-foot">
     <FormattedDate date={date} />
