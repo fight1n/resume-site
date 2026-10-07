@@ -1,7 +1,7 @@
 ---
 title: 用 Astro 搭一个「内容优先」的个人站
 summary: 为什么求职站、博客、文档站都适合用 Astro——Markdown 即内容，构建出纯静态、加载快、易部署的站点。
-date: 2026-06-15
+date: 2026-04-15
 tags: ["前端", "Astro", "静态站点"]
 featured: true
 ---
@@ -17,7 +17,7 @@ Astro 恰好满足这三点。
 ```md
 ---
 title: 标题
-date: 2026-06-15
+date: 2026-04-15
 tags: ["前端"]
 ---
 
@@ -28,7 +28,7 @@ tags: ["前端"]
 
 ## 默认零 JS
 
-Astro 默认把页面渲染成 HTML，不往浏览器塞运行时。只有你显式写 `<script>` 的地方才会打包 JS——比如本站顶部的移动端折叠菜单。
+Astro 默认把页面渲染成 HTML，不往浏览器塞运行时。只有显式写 `<script>` 的地方才会打包 JS.
 
 ## 部署到 GitHub Pages
 
